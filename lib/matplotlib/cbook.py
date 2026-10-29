@@ -41,6 +41,21 @@ class _ExceptionInfo:
     issues: caching tracebacks can keep user's objects in local namespaces
     alive indefinitely, which can lead to very surprising memory issues for
     users and result in incorrect tracebacks.
+
+    Parameters
+    ----------
+    cls : type[Exception]
+        The exception class to instantiate when the exception is needed.
+    *args
+        Positional arguments passed to the exception constructor.
+    notes : list[str], optional
+        Notes to attach to each reconstructed exception.
+
+    Notes
+    -----
+    `from_exception` copies the exception type, arguments, and notes without
+    retaining the original exception or its traceback. Each call to
+    `to_exception` returns a new exception instance.
     """
 
     def __init__(self, cls, *args, notes=None):
